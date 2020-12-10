@@ -1,13 +1,25 @@
 const fs = require('fs');
 const path = require('path');
 
+const Collection = require('./Collection.js');
+
+const DefautOptions = {
+  caching: false,
+  nestValues: true
+};
+
 class DB {
-  constructor(databasePath) {
+  constructor(databasePath, options = {}) {
+    if (!databasePath) throw 'No file path was specified.';
     this._path = path.resolve(databasePath);
     this._tmpFilePath = path.resolve(__dirname, '../../tmp/data.json');
+    this._collections = {};
+    this.options = Object.assign(DefautOptions, options);
+    this._caching = this.options.caching;
     if (!fs.existsSync(this._path)) throw 'Specified file does not exist.';
     try {
-      this._data = JSON.parse(fs.readFileSync(this._path, 'utf8'));
+      let data = JSON.parse(fs.readFileSync(this._path, 'utf8'));
+      if (this._caching) this._data = data;
     }
     catch (err) {
       throw 'An error occured when reading the DB\n' + err;
@@ -22,6 +34,8 @@ class DB {
   _writeDB(data) {
     if (!data) throw 'Tried to write to DB without any data.';
     try {
+      if (this._caching) this._data = data;
+      console.log(data);
       data = JSON.stringify(data);
       fs.writeFileSync(this._tmpFilePath, data);
       fs.renameSync(this._tmpFilePath, this._path);
@@ -46,34 +60,28 @@ class DB {
   }
 
   /**
-   * Save data to the DB
-   * @param collection Collection of DB
-   * @param key key for data
-   * @param data Data for the key to be set to
+   * Set the collection
    * @returns Boolean
    */
-  saveToDB(collection, key, data) {
+  _setCollection(collection, data) {
     if (!collection) throw 'Tried to save to DB without a collection name';
-    if (!key) throw 'Tried to save to DB without a key';
-    if (!data) throw 'Tried to save to DB without an data';
-    let dbData = this._readDB();
-    if (!dbData[collection]) dbData[collection] = {};
-    dbData[collection][key] = data;
+    if (!data) throw 'Tried to save to DB without any data';
+    let dbData = this._caching ? this._data : this._readDB();
+    dbData[collection] = data;
     this._writeDB(dbData);
     return true;
   }
 
   /**
-   * Save data to the DB
+   * Choose a collection
    * @param collection Collection of DB
-   * @param key key for data
-   * @returns Data
+   * @returns Collection
    */
-  getFromDB(collection, key) {
-    if (!collection) throw 'Tried to save to DB without a collection name';
-    if (!key) throw 'Tried to save to DB without a key';
-    let dbData = this._readDB();
-    return dbData[collection]?.[key];
+  collection(collection) {
+    if (!collection) throw 'collection name is required when choosing a collection';
+    if (this._collections[collection]) return this._collections[collection];
+    this._collections[collection] = new Collection(collection, this);
+    return this._collections[collection];
   }
 
   /**
