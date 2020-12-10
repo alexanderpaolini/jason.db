@@ -52,10 +52,23 @@ class DB {
         if (!collection) throw 'Tried to save to DB without a collection name'
         if (!key) throw 'Tried to save to DB without a key'
         if (!data) throw 'Tried to save to DB without an data'
-        let dbData = _readDB();
+        let dbData = this._readDB();
         dbData[collection][key] = data;
         writeDB(dbData);
         return true;
+    }
+
+    /**
+     * Save data to the DB
+     * @param collection Collection of DB
+     * @param key key for data
+     * @returns Data
+     */
+    getFromDB(collection, key) {
+        if (!collection) throw 'Tried to save to DB without a collection name'
+        if (!key) throw 'Tried to save to DB without a key'
+        let dbData = this._readDB();
+        return dbData[collection]?.[key];
     }
 
     /**
@@ -65,7 +78,7 @@ class DB {
     */
     clearDB(boolean) {
         if (boolean !== true) throw 'Tried to clear DB without a true boolean.'
-        writeDB({})
+        this._writeDB({});
         return true;
     }
 }
