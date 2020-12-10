@@ -1,6 +1,6 @@
 {
   "name": "jason.db",
-  "version": "0.1.0",
+  "version": "0.1.6",
   "description": "A JSON database",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Million900o/JSON-DB.git"
+    "url": "git+https://github.com/Million900o/jason.db.git"
   },
   "keywords": [
     "JSON"
@@ -16,7 +16,7 @@
   "author": "MILLION",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Million900o/JSON-DB/issues"
+    "url": "https://github.com/Million900o/jason.db/issues"
   },
-  "homepage": "https://github.com/Million900o/JSON-DB#readme"
+  "homepage": "https://github.com/Million900o/jason.db#readme"
 }
