@@ -53,6 +53,7 @@ class DB {
         if (!key) throw 'Tried to save to DB without a key'
         if (!data) throw 'Tried to save to DB without an data'
         let dbData = this._readDB();
+        if(!dbData[collection]) dbData[collection] = {};
         dbData[collection][key] = data;
         writeDB(dbData);
         return true;
