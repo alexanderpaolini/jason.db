@@ -55,7 +55,7 @@ class DB {
         let dbData = this._readDB();
         if(!dbData[collection]) dbData[collection] = {};
         dbData[collection][key] = data;
-        writeDB(dbData);
+        this._writeDB(dbData);
         return true;
     }
 
