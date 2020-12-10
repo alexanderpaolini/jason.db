@@ -21,7 +21,7 @@ class DB {
         if (!data) throw 'Tried to write to DB without any data.'
         try {
             data = JSON.stringify(data);
-            fs.writeFileSync(path.resolve(__dirname, 'tmp/data.json'), data);
+            fs.writeFileSync(path.resolve(__dirname, '../../tmp/data.json'), data);
             fs.renameSync('tmp/data.json', this._path)
             return true;
         } catch (err) {
