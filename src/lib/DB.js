@@ -4,7 +4,7 @@ const path = require('path')
 class DB {
     constructor(databasePath) {
         this._path = path.resolve(databasePath);
-        if(!fs.existsSync(this._path)) throw 'Specified file does not exist.'
+        if (!fs.existsSync(this._path)) throw 'Specified file does not exist.'
         try {
             this._data = JSON.parse(fs.readFileSync(file, 'utf8'));
         } catch (err) {
@@ -12,8 +12,13 @@ class DB {
         }
     }
 
+    /**
+     * Write to the DB
+     * @param data Data to be written
+     * @returns Boolean
+     */
     _writeDB(data) {
-        if(!data) throw 'Tried to write to DB without any data.'
+        if (!data) throw 'Tried to write to DB without any data.'
         try {
             data = JSON.stringify(data);
             fs.writeFileSync(path.resolve(__dirname, 'tmp/data.json'), data);
@@ -24,7 +29,11 @@ class DB {
         }
     }
 
-    readDB() {
+    /**
+     * Read the DB
+     * @returns Object
+     */
+    _readDB() {
         try {
             return JSON.parse(fs.readFileSync(this._path, 'utf8'));
         } catch (err) {
@@ -32,19 +41,32 @@ class DB {
         }
     }
 
+    /**
+     * Save data to the DB
+     * @param collection Collection of DB
+     * @param key key for data
+     * @param data Data for the key to be set to
+     * @returns Boolean
+     */
     saveToDB(collection, key, data) {
-        if(!collection) throw 'Tried to save to DB without a collection name'
-        if(!key) throw 'Tried to save to DB without a key'
-        if(!data) throw 'Tried to save to DB without an data'
-        let dbData = readDB();
+        if (!collection) throw 'Tried to save to DB without a collection name'
+        if (!key) throw 'Tried to save to DB without a key'
+        if (!data) throw 'Tried to save to DB without an data'
+        let dbData = _readDB();
         dbData[collection][key] = data;
         writeDB(dbData);
         return true;
     }
 
+    /**
+     * Clear the DB of all its data
+     * @param boolean To make sure you wan't do delete the data
+     * @returns Boolean
+    */
     clearDB(boolean) {
-        if(boolean !== true) throw 'Tried to clear DB without a true boolean.'
+        if (boolean !== true) throw 'Tried to clear DB without a true boolean.'
         writeDB({})
+        return true;
     }
 }
 
