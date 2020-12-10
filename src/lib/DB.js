@@ -1,14 +1,15 @@
 const fs = require('fs');
-const path = require('path')
+const path = require('path');
 
 class DB {
     constructor(databasePath) {
         this._path = path.resolve(databasePath);
         this._tmpFilePath = path.resolve(__dirname, '../../tmp/data.json');
-        if (!fs.existsSync(this._path)) throw 'Specified file does not exist.'
+        if (!fs.existsSync(this._path)) throw 'Specified file does not exist.';
         try {
             this._data = JSON.parse(fs.readFileSync(this._path, 'utf8'));
-        } catch (err) {
+        }
+        catch (err) {
             throw 'An error occured when reading the DB\n' + err;
         }
     }
@@ -19,13 +20,14 @@ class DB {
      * @returns Boolean
      */
     _writeDB(data) {
-        if (!data) throw 'Tried to write to DB without any data.'
+        if (!data) throw 'Tried to write to DB without any data.';
         try {
             data = JSON.stringify(data);
             fs.writeFileSync(this._tmpFilePath, data);
-            fs.renameSync(this._tmpFilePath, this._path)
+            fs.renameSync(this._tmpFilePath, this._path;
             return true;
-        } catch (err) {
+        }
+        catch (err) {
             throw 'An error occured when writing to the DB:\n' + err;
         }
     }
@@ -37,7 +39,8 @@ class DB {
     _readDB() {
         try {
             return JSON.parse(fs.readFileSync(this._path, 'utf8'));
-        } catch (err) {
+        }
+        catch (err) {
             throw 'An error occured when reading the DB\n' + err;
         }
     }
@@ -50,11 +53,11 @@ class DB {
      * @returns Boolean
      */
     saveToDB(collection, key, data) {
-        if (!collection) throw 'Tried to save to DB without a collection name'
-        if (!key) throw 'Tried to save to DB without a key'
-        if (!data) throw 'Tried to save to DB without an data'
+        if (!collection) throw 'Tried to save to DB without a collection name';
+        if (!key) throw 'Tried to save to DB without a key';
+        if (!data) throw 'Tried to save to DB without an data';
         let dbData = this._readDB();
-        if(!dbData[collection]) dbData[collection] = {};
+        if (!dbData[collection]) dbData[collection] = {};
         dbData[collection][key] = data;
         this._writeDB(dbData);
         return true;
@@ -67,8 +70,8 @@ class DB {
      * @returns Data
      */
     getFromDB(collection, key) {
-        if (!collection) throw 'Tried to save to DB without a collection name'
-        if (!key) throw 'Tried to save to DB without a key'
+        if (!collection) throw 'Tried to save to DB without a collection name';
+        if (!key) throw 'Tried to save to DB without a key';
         let dbData = this._readDB();
         return dbData[collection]?.[key];
     }
@@ -79,7 +82,7 @@ class DB {
      * @returns Boolean
     */
     clearDB(boolean) {
-        if (boolean !== true) throw 'Tried to clear DB without a true boolean.'
+        if (boolean !== true) throw 'Tried to clear DB without a true boolean.';
         this._writeDB({});
         return true;
     }

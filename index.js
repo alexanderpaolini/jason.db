@@ -1,3 +1,1 @@
-const DB = require('./src/lib/DB.js')
-
-module.exports.DB = DB
+module.exports.DB = require('./src/lib/DB.js')
