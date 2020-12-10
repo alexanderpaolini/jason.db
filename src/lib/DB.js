@@ -6,7 +6,7 @@ class DB {
         this._path = path.resolve(databasePath);
         if (!fs.existsSync(this._path)) throw 'Specified file does not exist.'
         try {
-            this._data = JSON.parse(fs.readFileSync(file, 'utf8'));
+            this._data = JSON.parse(fs.readFileSync(this._path, 'utf8'));
         } catch (err) {
             throw 'An error occured when reading the DB\n' + err;
         }
