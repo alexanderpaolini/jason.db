@@ -5,6 +5,7 @@ declare module 'json-db' {
         private _readDB(): object;
         private _writeDB(): boolean;
         public saveToDB(collection: string, key: string, data: string): boolean;
+        public getFromDB(collection: string, key: string): any;
         public clearDB(boolean: boolean): boolean;
     }
 }
