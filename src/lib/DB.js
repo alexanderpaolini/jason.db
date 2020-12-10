@@ -19,7 +19,7 @@ class DB {
    * @param data Data to be written
    * @returns Boolean
    */
-  _writeDB(data) {
+  _write(data) {
     if (!data) throw 'Tried to write to DB without any data.';
     try {
       data = JSON.stringify(data);
@@ -36,7 +36,7 @@ class DB {
    * Read the DB
    * @returns Object
    */
-  _readDB() {
+  _read() {
     try {
       return JSON.parse(fs.readFileSync(this._path, 'utf8'));
     }
@@ -46,44 +46,82 @@ class DB {
   }
 
   /**
-   * Save data to the DB
+   * Cursor data to DB
    * @param collection Collection of DB
    * @param key key for data
-   * @param data Data for the key to be set to
+   * @param value value for the key to be set to
+   * @returns Data
+   */
+  _cursor(collection, key, value) {
+    const properties = key.split('.');
+    const lastProperty = properties.pop();
+    const data = this._read();
+    
+    let cursor = data;
+    if (!cursor[collection]) cursor[collection] = {};
+    cursor = cursor[collection];
+    
+    for (const property of properties) {
+      if (!cursor[property] && value) cursor[property] = {};
+      if (typeof cursor[property] !== 'object') throw 'Cannot nest a non-object';
+      cursor = (cursor || {})[property];
+    }
+    
+    if (value) {
+      cursor[lastProperty] = value;
+      return data;
+    }
+    
+    return (cursor || {})[lastProperty];
+  }
+
+  /**
+   * Set data to the DB
+   * @param collection Collection of DB
+   * @param key key for data
+   * @param value value for the key to be set to
    * @returns Boolean
    */
-  saveToDB(collection, key, data) {
+  set(collection, key, value) {
     if (!collection) throw 'Tried to save to DB without a collection name';
     if (!key) throw 'Tried to save to DB without a key';
-    if (!data) throw 'Tried to save to DB without an data';
-    let dbData = this._readDB();
-    if (!dbData[collection]) dbData[collection] = {};
-    dbData[collection][key] = data;
-    this._writeDB(dbData);
+    if (!value) throw 'Tried to save to DB without a value';
+    this._write(this._cursor(collection, key, value));
     return true;
   }
 
   /**
-   * Save data to the DB
+   * Get data to the DB
    * @param collection Collection of DB
    * @param key key for data
    * @returns Data
    */
-  getFromDB(collection, key) {
-    if (!collection) throw 'Tried to save to DB without a collection name';
-    if (!key) throw 'Tried to save to DB without a key';
-    let dbData = this._readDB();
-    return dbData[collection]?.[key];
+  get(collection, key) {
+    if (!collection) throw 'Tried get DB without a collection name';
+    if (!key) throw 'Tried to get DB without a key';
+    return this._cursor(collection, key);
   }
 
+  /**
+   * Check if data is available in DB
+   * @param collection Collection of DB
+   * @param key key for data
+   * @returns Data
+   */
+  has(collection, key, value) {
+    if (!collection) throw 'Tried get DB without a collection name';
+    if (!key) throw 'Tried to get DB without a key';
+    return this._cursor(collection, key) !== undefined;
+  }
+  
   /**
    * Clear the DB of all its data
    * @param boolean To make sure you wan't do delete the data
    * @returns Boolean
   */
-  clearDB(boolean) {
+  clear(boolean) {
     if (boolean !== true) throw 'Tried to clear DB without a true boolean.';
-    this._writeDB({});
+    this._write({});
     return true;
   }
 }
