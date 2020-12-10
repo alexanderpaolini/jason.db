@@ -1,5 +1,5 @@
 {
-  "name": "json-db",
+  "name": "jason.db",
   "version": "0.1.0",
   "description": "A JSON database",
   "main": "index.js",
