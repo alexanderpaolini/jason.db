@@ -2,10 +2,12 @@
 declare module 'json-db' {
   export public class DB {
     constructor(path: string);
-    private _readDB(): object;
-    private _writeDB(): boolean;
-    public saveToDB(collection: string, key: string, data: string): boolean;
-    public getFromDB(collection: string, key: string): any;
-    public clearDB(boolean: boolean): boolean;
+    private _read(): object;
+    private _write(): boolean;
+    private _cursor(): object;
+    public set(collection: string, key: string, value: string): boolean;
+    public get(collection: string, key: string): any;
+    public has(collection: string, key: string): boolean;
+    public clear(boolean: boolean): boolean;
   }
 }
