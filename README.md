@@ -1,4 +1,4 @@
-# JSON-DB
+# jason.db (jason's db)
 
 I was bored, so I made this garbage JSON database. Don't use it unless you are just staring a project and need a temperary database. It isn't very fast and is very memory inefficient.
 

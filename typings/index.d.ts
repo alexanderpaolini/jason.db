@@ -1,8 +1,9 @@
 // Is this correct?
-declare module 'json-db' {
+declare module 'jason.db' {
 
   interface DatabaseOptions {
     caching?: boolean;
+    renameFile?: boolean;
   }
 
   export class DB {
