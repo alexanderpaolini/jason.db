@@ -32,8 +32,13 @@ Options passed into the DB
 
 | Option     | Type    | Default | Description                                                               |
 | ---------- | ------- | ------- | ------------------------------------------------------------------------- |
-| caching    | boolean | false   | Enables caching the entire json file in memory                            |
 | renameFile | boolean | true    | Enable renaming the file, replacing all occurances of "json" with "jason" |
+
+Options passed into the Collection
+
+| Option  | Type    | Default | Description                                    |
+| ------- | ------- | ------- | ---------------------------------------------- |
+| caching | boolean | false   | Enables caching the entire json file in memory |
 
 ---
 
