@@ -1,6 +1,6 @@
 {
   "name": "jason.db",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "description": "A JSON database",
   "main": "index.js",
   "scripts": {
