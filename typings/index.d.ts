@@ -8,14 +8,20 @@ declare module 'jason.db' {
 
   export class DB {
     constructor(path: string, options: DatabseOptions);
+    public readonly path: string;
+    private _tmpFilePath: string;
+    private _collections: string;
     private _read(): object;
     private _write(): boolean;
     private _setCollection(collection: string, data: any): boolean;
-    public collection(name: string): Collection;
+    public collection(name: string, options: DatabaseOptions): Collection;
     public clear(boolean: boolean): boolean;
   }
   class Collection {
     constructor(name: string, Database: DB);
+    public options: object;
+    public readonly name: string;
+    private _db: DB;
     private _read(): object;
     private _write(data: any): boolean;
     private _cursor(key: string, value: any): object;
