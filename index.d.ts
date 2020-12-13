@@ -7,7 +7,7 @@ declare module 'jason.db' {
   }
 
   export class DB {
-    constructor(path: string, options: DatabseOptions);
+    constructor(path: string, options: DatabaseOptions);
     public readonly path: string;
     private _tmpFilePath: string;
     private _collections: string;
