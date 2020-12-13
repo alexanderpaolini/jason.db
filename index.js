@@ -1,7 +1,5 @@
 const pkg = require('./package.json')
 
-const DB = require('./lib/DB.js')
-DB.Collection = require('./lib/Collection.js')
-DB.version = pkg.version
-
-module.exports = DB
+module.exports.DB = require('./lib/DB.js')
+module.exports.version = pkg.version
+module.exports.Collection = require('./lib/Collection.js')
