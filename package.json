@@ -1,6 +1,6 @@
 {
   "name": "jason.db",
-  "version": "0.1.24",
+  "version": "0.1.25",
   "description": "A JSON database",
   "main": "index.js",
   "typings": "index.d.ts",
