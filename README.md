@@ -1,5 +1,14 @@
 # jason.db (jason's db)
 
+## DO NOT USE THIS IT WAS MADE AS A JOKE
+
+This package stores JSON data which is prone to potential corruption and data loss. I strongly suggest you do not use it. If you want an easy storage solution please take a look at enmap.
+
+## [Enmap](https://enmap.evie.codes/)
+### It will probably corrupt and using JSON is generally a bad idea. If you need a
+
+---
+
 I was bored, so I made this garbage JSON database. Don't use it unless you are just staring a project and need a temperary database. It isn't very fast and is very memory inefficient.
 
 ---
