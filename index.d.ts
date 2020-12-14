@@ -14,7 +14,7 @@ declare module 'jason.db' {
     private _read(): object;
     private _write(): boolean;
     private _setCollection(collection: string, data: any): boolean;
-    public collection(name: string, options: DatabaseOptions): Collection;
+    public collection(name: string, options?: DatabaseOptions): Collection;
     public clear(boolean: boolean): boolean;
   }
   class Collection {
@@ -25,8 +25,8 @@ declare module 'jason.db' {
     private _read(): object;
     private _write(data: any): boolean;
     private _cursor(key: string, value: any): object;
-    public push(key: string, value: string): [any];
-    public set(key: string, value: string): boolean;
+    public push(key: string, value: any): [any];
+    public set(key: string, value: any): boolean;
     public get(key: string): any;
     public has(key: string): boolean;
   }
