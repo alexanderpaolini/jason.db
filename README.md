@@ -5,7 +5,6 @@
 This package stores JSON data which is prone to potential corruption and data loss. I strongly suggest you do not use it. If you want an easy storage solution please take a look at enmap.
 
 ## [Enmap](https://enmap.evie.codes/)
-### It will probably corrupt and using JSON is generally a bad idea. If you need a
 
 ---
 
