@@ -2,7 +2,6 @@
 declare module 'jason.db' {
 
   interface DatabaseOptions {
-    caching?: boolean;
     renameFile?: boolean;
     writeFile?: boolean;
   }
