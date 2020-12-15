@@ -41,6 +41,7 @@ Options passed into the DB
 | Option     | Type    | Default | Description                                                               |
 | ---------- | ------- | ------- | ------------------------------------------------------------------------- |
 | renameFile | boolean | true    | Enable renaming the file, replacing all occurances of "json" with "jason" |
+| writeFile | boolean | false    | Enable writing the file path, may cause random files to appear |
 
 Options passed into the Collection
 
