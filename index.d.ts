@@ -11,7 +11,8 @@ declare module 'jason.db' {
   }
 
   interface PoggersEncryptorOptions {
-    charList?: ' {}()[]<>|°¬.,_-:;"\'¡!¿?#$%&+/\\*`´~^=@\n\ráéíóúÁÉÍÓÚ1234567890ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz';
+    charList?: string;
+    joinString?: string;
   }
 
   export class DB {
