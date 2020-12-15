@@ -1,10 +1,11 @@
 {
   "name": "jason.db",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "description": "A JSON database",
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
+    "lint": "eslint . --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +21,8 @@
     "url": "https://github.com/Million900o/jason.db/issues"
   },
   "homepage": "https://github.com/Million900o/jason.db#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.15.0"
+  }
 }
