@@ -7,7 +7,12 @@ declare module 'jason.db' {
   }
 
   interface CollectionOptions {
-    caching?: boolean
+    caching?: boolean;
+  }
+
+  interface PoggersEncryptorOptions {
+    charList?: string;
+    joinString?: string;
   }
 
   export class DB {
@@ -33,5 +38,22 @@ declare module 'jason.db' {
     public set(key: string, value: any): boolean;
     public get(key: string): any;
     public has(key: string): boolean;
+  }
+
+  class PoggersDB {
+    constructor(path: string, options: DatabaseOptions);
+    public options: DatabaseOptions;
+    public readonly path: string;
+    private _read(callback: (err: any, data: object) => void): Promise<object>;
+    private _write(data: string, callback: (err: any) => Promise<Collection>): Promise<void>;
+    private _setCollection(collection: string, data: object, callback: (err: any) => void): Promise<void>;
+    public collection(collection: string, options: CollectionOptions, callback: (err: any, collection: Collection) => void): Promise<Collection>;
+    public clear(callback: (err: any) => void): Promise<void>;
+  }
+
+  class PoggersEncryptor {
+    constructor(options: PoggersEncryptorOptions);
+    public encrypt(data: string): string;
+    public decrypt(data: string): string;
   }
 }

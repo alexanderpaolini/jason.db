@@ -15,7 +15,8 @@
 		"no-useless-concat": "error",
 		"prefer-const": "warn", // Prefer const if variable doesn't change
 		"eol-last": ["error", "always"], // End-of-file newline
-		"arrow-parens": ["warn", "as-needed"] // Arrow function parenthesis
+		"arrow-parens": ["warn", "as-needed"], // Arrow function parenthesis
+		"indent": [ "warn", 2] // Make sure all indentations are 2 spaces
 		// More stuff here
 	}
 }
