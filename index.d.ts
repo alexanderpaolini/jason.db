@@ -6,6 +6,10 @@ declare module 'jason.db' {
     writeFile?: boolean;
   }
 
+  interface CollectionOptions {
+    caching?: boolean
+  }
+
   export class DB {
     constructor(path: string, options: DatabaseOptions);
     public readonly path: string;
