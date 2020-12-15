@@ -23,6 +23,7 @@
 	"homepage": "https://github.com/Million900o/jason.db#readme",
 	"dependencies": {},
 	"devDependencies": {
+		"@types/jest": "^26.0.19",
 		"eslint": "^7.15.0",
 		"jest": "^26.6.3"
 	}
