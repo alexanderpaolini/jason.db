@@ -1,4 +1,4 @@
-# jason.db (jason's db)
+# jason.db (jason's db) &middot; ![CI][ci]
 
 ## DO NOT USE THIS IT WAS MADE AS A JOKE
 
@@ -124,3 +124,5 @@ Returns a boolean, if the collection has data with that key.
 ## Contributiors
 
 [flazepe](https://github.com/flazepe) - Code for nested objects
+
+[ci]: https://github.com/Million900o/jason.db/workflows/CI/badge.svg
