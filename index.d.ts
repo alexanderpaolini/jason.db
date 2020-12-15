@@ -22,7 +22,7 @@ declare module 'jason.db' {
     public clear(boolean: boolean): boolean;
   }
   class Collection {
-    constructor(name: string, Database: DB);
+    constructor(name: string, options: CollectionOptions, Database: DB);
     public options: object;
     public readonly name: string;
     private _db: DB;
