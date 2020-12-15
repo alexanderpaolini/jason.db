@@ -1,28 +1,29 @@
 {
-  "name": "jason.db",
-  "version": "0.1.26",
-  "description": "A JSON database",
-  "main": "index.js",
-  "typings": "index.d.ts",
-  "scripts": {
-    "lint": "eslint . --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Million900o/jason.db.git"
-  },
-  "keywords": [
-    "JSON"
-  ],
-  "author": "MILLION",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Million900o/jason.db/issues"
-  },
-  "homepage": "https://github.com/Million900o/jason.db#readme",
-  "dependencies": {},
-  "devDependencies": {
-    "eslint": "^7.15.0"
-  }
+	"name": "jason.db",
+	"version": "0.1.26",
+	"description": "A JSON database",
+	"main": "index.js",
+	"typings": "index.d.ts",
+	"scripts": {
+		"lint": "eslint . --fix",
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Million900o/jason.db.git"
+	},
+	"keywords": [
+		"JSON"
+	],
+	"author": "MILLION",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Million900o/jason.db/issues"
+	},
+	"homepage": "https://github.com/Million900o/jason.db#readme",
+	"dependencies": {},
+	"devDependencies": {
+		"eslint": "^7.15.0",
+		"jest": "^26.6.3"
+	}
 }
