@@ -6,6 +6,12 @@ declare module 'jason.db' {
     writeFile?: boolean;
   }
 
+  interface PoggersDatabaseOptions {
+    renameFile?: boolean;
+    writeFile?: boolean;
+    EncryptorOptions?: PoggersEncryptorOptions;
+  }
+
   interface CollectionOptions {
     caching?: boolean;
   }
@@ -41,14 +47,15 @@ declare module 'jason.db' {
   }
 
   class PoggersDB {
-    constructor(path: string, options: DatabaseOptions);
-    public options: DatabaseOptions;
+    constructor(path: string, options: PoggersDatabaseOptions);
     public readonly path: string;
-    private _read(callback: (err: any, data: object) => void): Promise<object>;
-    private _write(data: string, callback: (err: any) => Promise<Collection>): Promise<void>;
-    private _setCollection(collection: string, data: object, callback: (err: any) => void): Promise<void>;
-    public collection(collection: string, options: CollectionOptions, callback: (err: any, collection: Collection) => void): Promise<Collection>;
-    public clear(callback: (err: any) => void): Promise<void>;
+    private _tmpFilePath: string;
+    private _collections: string;
+    private _read(): object;
+    private _write(): boolean;
+    private _setCollection(collection: string, data: any): boolean;
+    public collection(name: string, options?: CollectionOptions): Collection;
+    public clear(boolean: boolean): boolean;
   }
 
   class PoggersEncryptor {
