@@ -21,13 +21,18 @@ declare module 'jason.db' {
     joinString?: string;
   }
 
+  interface FileNameDatabaseOptions {
+    startString?: string;
+    endString?: string;
+  }
+
   export class DB {
     constructor(path: string, options: DatabaseOptions);
     public readonly path: string;
     private _tmpFilePath: string;
     private _collections: string;
     private _read(): object;
-    private _write(): boolean;
+    private _write(data: object): boolean;
     private _setCollection(collection: string, data: any): boolean;
     public collection(name: string, options?: CollectionOptions): Collection;
     public clear(boolean: boolean): boolean;
@@ -52,7 +57,22 @@ declare module 'jason.db' {
     private _tmpFilePath: string;
     private _collections: string;
     private _read(): object;
-    private _write(): boolean;
+    private _write(data: object): boolean;
+    private _setCollection(collection: string, data: any): boolean;
+    public collection(name: string, options?: CollectionOptions): Collection;
+    public clear(boolean: boolean): boolean;
+  }
+
+  class FileNameDB {
+    constructor(folder: string, options: FileNameDatabaseOptions);
+    public readonly folder: string;
+    private _tmpFilePath: string;
+    private _collections: string;
+    private _getFile(): string;
+    private _read(): object;
+    private _write(data: object): boolean;
+    private _clean(data: object): string;
+    private _parse(string: string): object;
     private _setCollection(collection: string, data: any): boolean;
     public collection(name: string, options?: CollectionOptions): Collection;
     public clear(boolean: boolean): boolean;
