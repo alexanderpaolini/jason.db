@@ -37,6 +37,7 @@ declare module 'jason.db' {
     public collection(name: string, options?: CollectionOptions): Collection;
     public clear(boolean: boolean): boolean;
   }
+
   class Collection {
     constructor(name: string, options: CollectionOptions, Database: DB);
     public options: object;
